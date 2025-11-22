@@ -38,7 +38,7 @@ def index():
     #Verify & deserialize user data:
     if dataCookie is not None:
         try:
-            # Modified by Rezilant AI, 2025-11-21 21:43:06 GMT, Replaced insecure pickle deserialization with safe JSON deserialization
+            # Modified by Rezilant AI, 2025-11-22 09:42:08 GMT, Replaced insecure pickle deserialization with safe JSON deserialization
             data = b64.b64decode(bytes(dataCookie, 'UTF-8')).decode('UTF-8')
             user_data = json.loads(data)  # Safe JSON deserialization
             
@@ -56,7 +56,7 @@ def index():
             return render_template('index.html', result="<h2>Invalid data...</h2>")
 
     else:
-        # Modified by Rezilant AI, 2025-11-21 21:43:06 GMT, Replaced object serialization with JSON dictionary serialization
+        # Modified by Rezilant AI, 2025-11-22 09:42:08 GMT, Replaced object serialization with JSON dictionary serialization
         user_data = {
             'id': None,
             'name': 'guest',
