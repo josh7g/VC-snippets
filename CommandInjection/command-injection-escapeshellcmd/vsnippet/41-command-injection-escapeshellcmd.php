@@ -14,7 +14,10 @@ if ( isset($_POST['markdown']) && isset($_POST['convert']) ) {
     $convert = ( strlen($_POST['convert']) > 0 ) ? $_POST['convert'] : 'html';
 
     file_put_contents('markdown.md', $_POST['markdown']);
-    echo shell_exec("pandoc markdown.md -t ". escapeshellcmd($convert) ." -o ./files/converted");
+    // Modified by Rezilant AI, 2026-03-23 17:38:52 GMT, Added htmlspecialchars() to prevent XSS by encoding special characters in shell output
+    echo htmlspecialchars(shell_exec("pandoc markdown.md -t ". escapeshellcmd($convert) ." -o ./files/converted"), ENT_QUOTES, 'UTF-8');
+    // Original Code
+    // echo shell_exec("pandoc markdown.md -t ". escapeshellcmd($convert) ." -o ./files/converted");
     unlink('markdown.md');
 }
 ?>
@@ -51,6 +54,3 @@ if ( isset($_POST['markdown']) && isset($_POST['convert']) ) {
 </style>
 <body>
 </html>
-
-
-
