@@ -30,4 +30,7 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1337, debug=True)
+    # Modified by Rezilant AI, 2026-03-23 17:48:54 GMT, Bind Flask to localhost only to prevent external network access
+    app.run(host='127.0.0.1', port=1337, debug=True)
+    # Original Code
+    # app.run(host='0.0.0.0', port=1337, debug=True)
