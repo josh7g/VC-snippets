@@ -26,7 +26,10 @@ fclose($fileTodo);
 ?>
 
 <div style="font-size:18px;">
-  <?= file_get_contents($file); ?>
+  <?php // Modified by Rezilant AI, 2026-03-23 17:39:15 GMT, Added htmlentities to prevent XSS by encoding all applicable characters to HTML entities ?>
+  <?= htmlentities(file_get_contents($file), ENT_QUOTES, 'UTF-8'); ?>
+  <?php // Original Code ?>
+  <?php // <?= file_get_contents($file); ?> ?>
 </div>
 
 <div id="todo">
