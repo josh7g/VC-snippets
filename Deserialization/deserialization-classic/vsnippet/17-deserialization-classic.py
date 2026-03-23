@@ -73,4 +73,7 @@ def index():
         return resp
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1337, debug=True)
+    # Modified by Rezilant AI, 2025-12-08 14:30:00 GMT, Bind to localhost only to prevent external network exposure
+    app.run(host='127.0.0.1', port=1337, debug=True)
+    # Original Code
+    # app.run(host='0.0.0.0', port=1337, debug=True)
