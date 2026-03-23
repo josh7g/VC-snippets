@@ -50,5 +50,9 @@ def index():
         message = message
     )
 
+# Modified by Rezilant AI, 2024-12-08 14:30:00 GMT, Changed to bind to localhost only and disabled debug mode for production security
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1337, debug=True)
+    app.run(host='127.0.0.1', port=1337, debug=False)
+# Original Code
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=1337, debug=True)
