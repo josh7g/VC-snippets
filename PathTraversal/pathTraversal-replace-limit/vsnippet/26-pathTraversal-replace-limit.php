@@ -38,7 +38,10 @@ if ( isset($_GET["page"]) ) {
     $page = preg_replace("/[\\\\\/:]/", "_", $page, 10);
 }
 echo "Current page:\t" . htmlentities($page);
-echo file_get_contents("./account/$page");
+// Modified by Rezilant AI, 2026-03-23 17:39:00 GMT, wrapping file_get_contents output with htmlentities() to prevent XSS attacks
+echo htmlentities(file_get_contents("./account/$page"), ENT_QUOTES, 'UTF-8');
+// Original Code
+//echo file_get_contents("./account/$page");
 ?>
 
 </center>
