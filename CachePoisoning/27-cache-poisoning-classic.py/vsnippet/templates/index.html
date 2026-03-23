@@ -7,7 +7,10 @@
 <h1> {{ config.TITLE }} </h1>
 
 <!--Vsnippet output-->
-<h2> {{ result | safe }} </h2>
+<!-- Modified by Rezilant AI, 2026-03-23 17:46:56 GMT, Removed | safe filter to prevent XSS attacks by enabling automatic HTML escaping -->
+<h2> {{ result }} </h2>
+<!-- Original Code -->
+<!-- <h2> {{ result | safe }} </h2> -->
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
