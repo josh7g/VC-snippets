@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import os, base64, pickle
+import json
+import time
 
 ic = {
     'k': '[\033[1;32mOK\033[0m] ',
@@ -21,6 +23,14 @@ if cmd in ['', ' ', '\t']:
     print(ic['w']+'No command default command set => whoami')
     cmd = 'whoami'
 
-#Payload setup & verbose:
-payload = base64.b64encode(pickle.dumps(Exploit()))
+# Modified by Rezilant AI, 2026-03-23 17:47:04 GMT, Replace insecure pickle serialization with safe JSON serialization
+data = {
+    'command': cmd,
+    'timestamp': time.time(),
+    # Add other necessary fields as plain data
+}
+payload = base64.b64encode(json.dumps(data).encode('utf-8'))
+
+# Original Code
+#payload = base64.b64encode(pickle.dumps(Exploit()))
 print(ic['k'], payload.decode('ascii'))
