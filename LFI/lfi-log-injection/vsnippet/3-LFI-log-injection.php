@@ -37,10 +37,34 @@ function Logging($value) {
     file_put_contents("logs/log.txt", (date("[Y-m-d]") . "$value\n"), FILE_APPEND);
 }
 
-$lang = ( isset($_GET['lang']) ) ? $_GET['lang'] : "en";
+// Modified by Rezilant AI, 2024-12-22 10:30:00 GMT, Replaced vulnerable include logic with strict allowlist approach to prevent path traversal and LFI attacks
+// Define allowed languages
+$allowed_languages = [
+    'en' => 'home/en.php',
+    'fr' => 'home/fr.php',
+    'es' => 'home/es.php',
+    'de' => 'home/de.php'
+];
 
+// Get language parameter with default fallback
+$lang = isset($_GET['lang']) ? $_GET['lang'] : 'en';
+
+// Validate against allowlist
+if (!array_key_exists($lang, $allowed_languages)) {
+    $lang = 'en'; // Default to English if invalid
+}
+
+// Log the validated value
 Logging($lang);
-include(OSPath("home/" . IncludeFilter($lang)));
+
+// Include the validated file
+include($allowed_languages[$lang]);
+
+// Original Code
+// $lang = ( isset($_GET['lang']) ) ? $_GET['lang'] : "en";
+// 
+// Logging($lang);
+// include(OSPath("home/" . IncludeFilter($lang)));
 
 ?>
 
