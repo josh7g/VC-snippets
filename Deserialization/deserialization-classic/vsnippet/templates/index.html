@@ -13,7 +13,10 @@
 
 
 <!--Vsnippet output-->
-<h2> {{ result | safe }} </h2>
+<!-- Modified by Rezilant AI, 2026-03-23 17:48:46 GMT, Removed unsafe 'safe' filter to prevent XSS by enabling automatic HTML escaping -->
+<h2> {{ result }} </h2>
+<!-- Original Code -->
+<!-- <h2> {{ result | safe }} </h2> -->
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
