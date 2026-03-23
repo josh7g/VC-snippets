@@ -63,7 +63,16 @@ def index():
             'date': date.today().strftime('%d/%m/%Y')
         }
         json_data = json.dumps(user_data)
-        resp.set_cookie('userData', b64.b64encode(json_data.encode('UTF-8')).decode('UTF-8'))
+        # Modified by Rezilant AI, 2025-12-08 14:30:00 GMT, Added secure cookie attributes to protect against XSS, CSRF, and MITM attacks
+        resp.set_cookie(
+            'userData', 
+            b64.b64encode(json_data.encode('UTF-8')).decode('UTF-8'),
+            secure=True,
+            httponly=True,
+            samesite='Lax'
+        )
+        # Original Code
+        # resp.set_cookie('userData', b64.b64encode(json_data.encode('UTF-8')).decode('UTF-8'))
         resp.data = render_template('index.html', result="")
         # Original Code
         # newData = CreateData(None, 'guest', date.today().strftime('%d/%m/%Y'))
