@@ -32,5 +32,7 @@ def index():
 
 #Start the vulnerable server:
 if __name__=='__main__':
-    app.run(host='0.0.0.0', port=1337, debug=True)
-
+    # Modified by Rezilant AI, 2026-03-23 17:49:02 GMT, Bind to localhost instead of 0.0.0.0 to prevent exposure to public internet
+    app.run(host='127.0.0.1', port=1337, debug=True)
+    # Original Code
+    # app.run(host='0.0.0.0', port=1337, debug=True)
