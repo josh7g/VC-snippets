@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import os, ipaddress
 from ignore.design import design
+import subprocess
+
 app = design.Design(Flask(__name__), __file__, 'Vsnippet - Classic command injection')
 
 ##
@@ -18,7 +20,17 @@ def index():
         if method is None or method == "":
             return render_template('index.html', result="The post parameter 'method' is missing in the request")
         
-        return render_template('index.html', result=os.popen(f"curl 'http://localhost:1337/{method}'").read())
+        # Modified by Rezilant AI, 2026-03-23 17:39:07 GMT, replaced os.popen() with subprocess.run() to prevent command injection
+        result = subprocess.run(
+            ['curl', f'http://localhost:1337/{method}'],
+            capture_output=True,
+            text=True,
+            timeout=5
+        ).stdout
+        return render_template('index.html', result=result)
+        
+        # Original Code
+        # return render_template('index.html', result=os.popen(f"curl 'http://localhost:1337/{method}'").read())
     
     return "Unsupported request method"
 
